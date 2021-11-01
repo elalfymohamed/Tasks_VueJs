@@ -4,7 +4,11 @@
       <h1>{{ title }}</h1>
     </div>
     <div>
-      <Button text="Add Task" color="green" />
+      <Button
+        @toggle-btn-click="$emit('toggle-btn-click')"
+        :text="!showAddTask ? 'Add task' : 'Close'"
+        :color="!showAddTask ? 'green' : 'red'"
+      />
     </div>
   </header>
 </template>
@@ -15,6 +19,7 @@ export default {
   name: "Header",
   props: {
     title: String,
+    showAddTask: Boolean,
   },
   components: {
     Button,

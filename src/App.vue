@@ -1,45 +1,35 @@
 <template>
+  <h1 class="title">Tasks</h1>
   <div class="container">
-    <Header title="Task Tracker" />
-    <Tasks :tasks="tasks" />
+    <Header
+      @toggle-btn-click="toggleBtnClick"
+      title="Task Tracker"
+      :showAddTask="showAddTask"
+    />
+    <router-view :showAddTask="showAddTask"></router-view>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from "@/components/Header/Header.vue";
-import Tasks from "@/components/Tasks/Tasks.vue";
+import Footer from "@/components/footer/Footer.vue";
 export default {
   name: "App",
   components: {
     Header,
-    Tasks,
+    Footer,
   },
   data() {
     return {
-      tasks: [],
+      showAddTask: false,
     };
   },
-  created() {
-    this.tasks = [
-      {
-        id: "1",
-        text: "Doctors Appointment",
-        day: "March 5th at 2:30pm",
-        reminder: true,
-      },
-      {
-        id: "2",
-        text: "Meeting with boss",
-        day: "March 6th at 1:30pm",
-        reminder: true,
-      },
-      {
-        id: "3",
-        text: "Food shopping",
-        day: "March 7th at 2:00pm",
-        reminder: false,
-      },
-    ];
+  methods: {
+    // toggle btn click
+    toggleBtnClick() {
+      this.showAddTask = !this.showAddTask;
+    },
   },
 };
 </script>
@@ -62,6 +52,12 @@ body {
   border: 1px solid steelblue;
   padding: 30px;
   border-radius: 5px;
+}
+.title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin: 30px 0;
+  text-align: center;
 }
 .btn {
   display: inline-block;
