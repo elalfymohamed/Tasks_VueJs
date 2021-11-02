@@ -18,7 +18,7 @@
     @isShow-massage-task="isShowMassageDT"
     :tasks="tasks"
   />
-  <MDelete
+  <Massage
     @isShow-massage-task="isShowMassageDT"
     @delete-task="deleteTask"
     :isShowMessageTask="isShowMessageTask"
@@ -29,7 +29,7 @@
 <script>
 import AddTask from "../components/Tasks/AddTask.vue";
 import Tasks from "../components/Tasks/Tasks.vue";
-import MDelete from "../components/Massage/MDelete.vue";
+import Massage from "../components/Massage/Massage.vue";
 export default {
   name: "Home",
   props: {
@@ -39,7 +39,7 @@ export default {
   components: {
     AddTask,
     Tasks,
-    MDelete,
+    Massage,
   },
   data() {
     return {

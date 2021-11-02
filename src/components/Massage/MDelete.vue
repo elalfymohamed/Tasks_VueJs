@@ -1,42 +1,27 @@
 <template>
-  <div class="massage">
-    <!-- show massage task delete -->
-    <div class="massage-contenrt" v-if="isShowMessageTask">
-      <div class="massage-delete">
-        <div class="massage-delete-content">
-          <h4 class="massage-delete-title">
-            are you sure you want to delete this task?
-          </h4>
-          <div class="massage-delete-btn">
-            <button
-              type="button"
-              data-toggle="yes"
-              @click="
-                {
-                  onDeleteTask();
-                  isShowMassege();
-                }
-              "
-            >
-              Yes
-            </button>
-            <button type="button" data-toggle="no" @click="isShowMassege()">
-              No
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- show massage task add -->
-    <div
-      :class="[
-        isShowMessageAddTask ? 'show-massage-add' : '',
-        'massage-contenr-add',
-      ]"
-    >
-      <div class="massage-add" v-if="isShowMessageAddTask">
-        <div class="massage-add-content">
-          <p>Task has been added</p>
+  <!-- show massage task delete -->
+  <div class="massage-contenrt" v-if="isShowMessageTask">
+    <div class="massage-delete">
+      <div class="massage-delete-content">
+        <h4 class="massage-delete-title">
+          {{ deleteTitle }}
+        </h4>
+        <div class="massage-delete-btn">
+          <button
+            type="button"
+            data-toggle="yes"
+            @click="
+              {
+                onDeleteTask();
+                isShowMassege();
+              }
+            "
+          >
+            Yes
+          </button>
+          <button type="button" data-toggle="no" @click="isShowMassege()">
+            No
+          </button>
         </div>
       </div>
     </div>
@@ -48,8 +33,13 @@ export default {
   name: "MDelete",
   props: {
     isShowMessageTask: Boolean,
-    isShowMessageAddTask: Boolean,
   },
+  data() {
+    return {
+      deleteTitle: "are you sure you want to delete this task?",
+    };
+  },
+
   methods: {
     isShowMassege() {
       this.$emit("isShow-massage-task");
@@ -120,28 +110,5 @@ export default {
 .massage-delete-btn button:last-child:hover {
   background-color: rgb(255, 0, 0);
   color: #fff;
-}
-
-.massage-contenr-add {
-  position: absolute;
-  top: 104%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: all 0.3s ease-in-out;
-}
-.show-massage-add {
-  top: 95%;
-}
-.massage-add {
-  background: #fff;
-  /* padding: 10px 25px; */
-  border-radius: 5px;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-}
-
-.massage-add-content {
-  border-left: 5px solid green;
-  padding: 10px 25px;
-  border-radius: 5px;
 }
 </style>
