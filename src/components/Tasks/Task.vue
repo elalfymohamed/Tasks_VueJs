@@ -5,7 +5,12 @@
   >
     <h3>
       {{ task.text }}
-      <span @click="onDeleteTask(task.id)">
+      <span
+        @click="
+          onDeleteTaskDI(task.id);
+          isShowMassege();
+        "
+      >
         <i class="fas fa-times"></i>
       </span>
     </h3>
@@ -20,11 +25,14 @@ export default {
     task: Object,
   },
   methods: {
-    onDeleteTask(id) {
-      this.$emit("delete-task", id);
+    onDeleteTaskDI(id) {
+      this.$emit("delete-taskDI", id);
     },
     onToggleReminder(id) {
       this.$emit("toggle-reminder", id);
+    },
+    isShowMassege() {
+      this.$emit("isShow-massage-task");
     },
   },
 };
